@@ -381,37 +381,21 @@ class _HomeState extends State<Home> {
   void _sendAMessageToBluetooth() async {
     connection.output.add(utf8.encode("A" + "\r\n"));
     await connection.output.allSent;
-    show("Device Turned ON");
-    setState(() {
-      _deviceState = 1;
-    });
   }
 
   void _sendBMessageToBluetooth() async {
-    connection.output.add(utf8.encode("B" "\r\n"));
+    connection.output.add(utf8.encode("B" + "\r\n"));
     await connection.output.allSent;
-    show("Device Turned Off");
-    setState(() {
-      _deviceState = -1;
-    });
   }
 
   void _sendCMessageToBluetooth() async {
-    connection.output.add(utf8.encode("C" "\r\n"));
+    connection.output.add(utf8.encode("C" + "\r\n"));
     await connection.output.allSent;
-    show("Device Turned Off");
-    setState(() {
-      _deviceState = -1;
-    });
   }
 
   void _sendDMessageToBluetooth() async {
-    connection.output.add(utf8.encode("C" "\r\n"));
+    connection.output.add(utf8.encode("D" + "\r\n"));
     await connection.output.allSent;
-    show("Device Turned Off");
-    setState(() {
-      _deviceState = -1;
-    });
   }
 
   Future show (
