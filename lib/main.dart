@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
     'neutralBorderColor': Colors.transparent,
     'onTextColor': Colors.green[700],
     'offTextColor': Colors.red[700],
-    'neutralTextColor': Colors.blue,
+    'neutralTextColor': Colors.cyan,
   };
 
   @override
@@ -156,6 +156,7 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     Switch(
+                      activeColor: Colors.cyan,
                       value: _bluetoothState.isEnabled,
                       onChanged: (bool value) {
                         future() async {
@@ -191,7 +192,7 @@ class _HomeState extends State<Home> {
                         padding: const EdgeInsets.only(top: 10),
                         child: Text(
                           "PAIRED DEVICES",
-                          style: TextStyle(fontSize: 24, color: Colors.blue),
+                          style: TextStyle(fontSize: 24, color: Colors.cyan),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -213,6 +214,10 @@ class _HomeState extends State<Home> {
                               value: _deviceList.isNotEmpty ? _device : null,
                             ),
                             ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: ContinuousRectangleBorder(),
+                                primary: Colors.cyan
+                              ),
                               onPressed: _isButtonUnavailable
                                   ? null
                                   : _connected ? _disconnect : _connect,
@@ -222,9 +227,9 @@ class _HomeState extends State<Home> {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
+                      Center(
                         child: Card(
+                          margin: const EdgeInsets.all(40.0),
                           shape: RoundedRectangleBorder(
                             side: new BorderSide(
                               color: _deviceState == 0
@@ -237,35 +242,64 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(4.0),
                           ),
                           elevation: _deviceState == 0 ? 4 : 0,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: <Widget>[
-                                ElevatedButton(
-                                  onPressed: _connected
-                                      ? _sendAMessageToBluetooth
-                                      : null,
-                                  child: Text("Rick Roll"),
-                                ),
-                                ElevatedButton(
-                                  onPressed: _connected
-                                      ? _sendBMessageToBluetooth
-                                      : null,
-                                  child: Text("'You've been hacked'"),
-                                ),
-                                ElevatedButton(
-                                  onPressed: _connected
-                                      ? _sendCMessageToBluetooth
-                                      : null,
-                                  child: Text("Reboot Computer xD"),
-                                ),
-                                ElevatedButton(
-                                  onPressed: _connected
-                                      ? _sendDMessageToBluetooth
-                                      : null,
-                                  child: Text("Hijack Mouse"),
-                                ),
-                              ],
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: 300,
+                            child: Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                //mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty.all<Color>(Colors.cyan),
+                                      minimumSize: MaterialStateProperty.all<Size>(Size(double.infinity, 55)),
+                                    ),
+                                    onPressed: _connected
+                                        ? _sendAMessageToBluetooth
+                                        : null,
+                                    child: Text("Rick Roll"),
+                                  ),
+                                  ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty.all<Color>(Colors.cyan),
+                                      minimumSize: MaterialStateProperty.all<Size>(Size(double.infinity, 55)),
+                                    ),
+                                    onPressed: _connected
+                                        ? _sendBMessageToBluetooth
+                                        : null,
+                                    child: Text("'You've been hacked'"),
+                                  ),
+                                  ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty.all<Color>(Colors.cyan),
+                                      minimumSize: MaterialStateProperty.all<Size>(Size(double.infinity, 55)),
+                                    ),
+                                    onPressed: _connected
+                                        ? _sendCMessageToBluetooth
+                                        : null,
+                                    child: Text("Reboot Computer xD"),
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: _connected
+                                        ? _sendDMessageToBluetooth
+                                        : null,
+                                    style: ButtonStyle(
+                                      minimumSize: MaterialStateProperty.all<Size>(Size(double.infinity, 55)),
+                                      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                                            (Set<MaterialState> states) {
+                                          if (states.contains(MaterialState.pressed))
+                                            return Colors.cyan.withOpacity(0.5);
+                                          return Colors.cyan; // Use the component's default.
+                                        },
+                                      ),
+                                      shape: MaterialStateProperty.all(RoundedRectangleBorder()),
+                                    ),
+                                    child: Text("Hijack Mouse"),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -273,7 +307,7 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                   Container(
-                    color: Colors.blue,
+                    color: Colors.cyan,
                   ),
                 ],
               ),
